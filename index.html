@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ആൻറ്റിക്സ്</title>
+<meta name="description" content="പഴയതിനും ഒരു കഥയുണ്ട്. Old things have stories too.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600;900&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EAEDE8; --ink:#1A2523; --patina:#27574F; --deep:#0F2A26; --brass:#A8782A; --flame:#F2C879; --mist:#D3DAD4;
+  --serif:"Spectral","Noto Serif Malayalam",Georgia,serif;
+  --ml:"Noto Serif Malayalam","Spectral",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0E1917; --ink:#E4E9E4; --patina:#7FB5AA; --deep:#081210; --brass:#D4A24C; --mist:#1D2D2B}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.75}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+
+/* language switching */
+.ml{font-family:var(--ml)}
+body[data-lang="ml"] .en{display:none}
+body[data-lang="en"] .ml{display:none}
+body[data-lang="both"] .en{display:block;font-family:var(--serif);font-size:.82em;font-style:italic;opacity:.8;line-height:1.55;margin-top:4px}
+
+/* header */
+header{display:flex;justify-content:space-between;align-items:center;padding:26px 0;flex-wrap:wrap;gap:14px;border-bottom:1px solid rgba(212,162,76,.35)}
+header b{font-family:var(--ml);font-size:1.35rem;letter-spacing:.01em}
+.right{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+nav a{text-decoration:none;text-align:center;display:block;border-bottom:1px solid transparent}
+nav a:hover{border-color:var(--brass)}
+.lang{display:flex;border:1px solid var(--brass);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:inherit;font:inherit;font-size:.82rem;padding:5px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--brass);color:#14100A}
+
+/* hero */
+.hero{background:var(--deep);color:#EEF2EE;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:32px;padding:72px 0 96px}
+.hero h1{font-weight:900;font-size:clamp(2.7rem,8vw,5.6rem);line-height:1.22;margin:0;letter-spacing:-.01em}
+.hero h1 .en{font-family:var(--serif);font-weight:600;font-size:.34em;font-style:italic;opacity:.85;margin-top:14px;letter-spacing:0}
+.hero p{max-width:36ch;font-size:1.2rem;margin:28px 0 0;color:#C3D2CD}
+.rule{width:72px;height:3px;background:var(--brass);margin:0 0 28px;border:0}
+.lamp{width:100%;max-width:300px;justify-self:center;overflow:visible}
+.glow{position:absolute;right:6%;top:50%;width:520px;height:520px;transform:translateY(-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(242,200,121,.22),rgba(242,200,121,0) 65%);pointer-events:none}
+.flame{transform-origin:100px 80px;animation:flicker 3.2s ease-in-out infinite}
+@keyframes flicker{0%,100%{transform:scale(1,1)}25%{transform:scale(.96,1.05) rotate(-1.2deg)}55%{transform:scale(1.03,.97) rotate(1deg)}78%{transform:scale(.98,1.04)}}
+@media (prefers-reduced-motion:reduce){.flame{animation:none}html{scroll-behavior:auto}}
+
+/* about */
+.about{padding:96px 0 104px}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+h2{font-size:2.3rem;margin:0;color:var(--patina);line-height:1.3}
+h2 .en{font-size:.45em;color:var(--ink)}
+.about-text p{margin:0 0 22px;max-width:52ch}
+.about-text .big{font-size:1.45rem;line-height:1.6}
+.about-text .big .en{font-size:.7em}
+.about-text p:last-child{margin-bottom:0}
+.band{background:var(--mist);padding:40px 0;text-align:center}
+.band span{font-family:var(--ml);font-size:1.5rem;color:var(--patina)}
+.band .dot{display:inline-block;width:8px;height:8px;background:var(--brass);transform:rotate(45deg);margin:0 18px;vertical-align:middle}
+footer{padding:30px 0;font-size:.9rem;background:var(--deep);color:#C3D2CD}
+
+@media (max-width:760px){
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .hero-grid{padding:48px 0 64px;gap:40px}
+  .lamp{max-width:170px;justify-self:start;order:-1}
+  .glow{right:-160px;top:40%}
+  .about{padding:64px 0 72px}
+  .about-grid{gap:24px}
+}
+</style>
+</head>
+<body data-lang="both">
+<div class="hero">
+  <div class="glow"></div>
+  <div class="wrap">
+    <header>
+      <b class="ml">ആൻറ്റിക്സ്</b>
+      <div class="right">
+        <nav><a href="#about"><span class="ml">ഞങ്ങളെക്കുറിച്ച്</span><span class="en">About</span></a></nav>
+        <div class="lang" role="group" aria-label="Language / ഭാഷ">
+          <button data-set="ml" aria-pressed="false">മലയാളം</button>
+          <button data-set="en" aria-pressed="false">English</button>
+          <button data-set="both" aria-pressed="true">ML + EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero-grid">
+      <div>
+        <hr class="rule">
+        <h1>
+          <span class="ml">പഴയതിനും<br>ഒരു കഥയുണ്ട്.</span>
+          <span class="en">Old things have stories too.</span>
+        </h1>
+        <p>
+          <span class="ml">ഓട്, ചെമ്പ്, തടി, ചില്ല്. എന്നും നിലനിൽക്കാൻ പണിത സാധനങ്ങൾ.</span>
+          <span class="en">Brass, copper, wood and glass, made to last.</span>
+        </p>
+      </div>
+
+      <svg class="lamp" viewBox="0 0 200 300" role="img" aria-label="Brass lamp">
+        <g class="flame">
+          <path d="M100 18 C114 44 124 58 100 84 C76 58 86 44 100 18Z" fill="#F2C879"/>
+          <path d="M100 48 C106 60 110 68 100 80 C90 68 94 60 100 48Z" fill="#FFF3D6"/>
+        </g>
+        <path d="M52 92 Q100 142 148 92 Z" fill="#B98A35"/>
+        <ellipse cx="100" cy="92" rx="48" ry="7" fill="#D4A24C"/>
+        <rect x="93" y="122" width="14" height="104" fill="#B98A35"/>
+        <ellipse cx="100" cy="142" rx="17" ry="5" fill="#D4A24C"/>
+        <ellipse cx="100" cy="176" rx="20" ry="6" fill="#D4A24C"/>
+        <ellipse cx="100" cy="210" rx="17" ry="5" fill="#D4A24C"/>
+        <path d="M58 280 Q100 214 142 280 Z" fill="#B98A35"/>
+        <rect x="46" y="278" width="108" height="10" rx="3" fill="#D4A24C"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <h2><span class="ml">ഞങ്ങളെക്കുറിച്ച്</span><span class="en">About us</span></h2>
+    <div class="about-text">
+      <p class="big">
+        <span class="ml">ആൻറ്റിക്സ് പഴയ സാധനങ്ങളെ സ്നേഹിക്കുന്നവർക്കുള്ള ഇടമാണ്.</span>
+        <span class="en">This is a place for people who love old things.</span>
+      </p>
+      <p>
+        <span class="ml">ഓരോ സാധനത്തിനും അതിൻ്റെ കാലവും കഥയും ഉണ്ട്. അത് അറിഞ്ഞ് സൂക്ഷിക്കുകയും പുതിയ കയ്യിലേക്ക് എത്തിക്കുകയുമാണ് ഞങ്ങളുടെ ജോലി.</span>
+        <span class="en">Every piece has its time and its story. We keep them with care and pass them on to new hands.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true">
+  <span>ഓട്</span><i class="dot"></i><span>ചെമ്പ്</span><i class="dot"></i><span>തടി</span><i class="dot"></i><span>ചില്ല്</span>
+</div>
+</main>
+
+<footer><div class="wrap"><span class="ml">© ആൻറ്റിക്സ്</span><span class="en">© ആൻറ്റിക്സ്</span></div></footer>
+
+<script>
+(function(){
+  var buttons=document.querySelectorAll('.lang button');
+  function setLang(l){
+    document.body.setAttribute('data-lang',l);
+    document.documentElement.lang = l==='en' ? 'en' : 'ml';
+    buttons.forEach(function(b){b.setAttribute('aria-pressed', b.dataset.set===l);});
+    try{localStorage.setItem('lang',l);}catch(e){}
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.set);});});
+  try{var s=localStorage.getItem('lang'); if(s) setLang(s);}catch(e){}
+})();
+</script>
+</body>
+</html>

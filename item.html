@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ബറാക്കിയ്യ | Baraqiyya</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Malayalam:wght@400;600;900&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EAEDE8; --ink:#1A2523; --patina:#27574F; --deep:#0F2A26; --brass:#A8782A; --mist:#D3DAD4; --card:#F6F8F5;
+  --serif:"Spectral","Noto Serif Malayalam",Georgia,serif;
+  --ml:"Noto Serif Malayalam","Spectral",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#0E1917; --ink:#E4E9E4; --patina:#7FB5AA; --deep:#081210; --brass:#D4A24C; --mist:#1D2D2B; --card:#142421}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.7}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.ml{font-family:var(--ml)}
+body[data-lang="ml"] .en{display:none}
+body[data-lang="en"] .ml{display:none}
+body[data-lang="both"] .en{display:block;font-family:var(--serif);font-size:.82em;font-style:italic;opacity:.8;line-height:1.5;margin-top:3px}
+
+/* hero + header */
+.hero{background:var(--deep);color:#EEF2EE;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;flex-wrap:wrap;gap:12px;border-bottom:1px solid rgba(212,162,76,.35)}
+header b{font-size:1.3rem}
+header b a{text-decoration:none}
+.lang{display:flex;border:1px solid var(--brass);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:inherit;font:inherit;font-size:.82rem;padding:5px 14px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--brass);color:#14100A}
+.hero-body{padding:72px 0 88px}
+.rule{width:72px;height:3px;background:var(--brass);margin:0 0 26px;border:0}
+.tag{color:var(--brass);letter-spacing:.12em;text-transform:uppercase;font-size:.9rem;margin:0 0 8px}
+.hero h1{font-weight:900;font-size:clamp(3.2rem,13vw,7.5rem);line-height:1.2;margin:0}
+body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:italic;opacity:.85;margin-top:10px}
+.hero p.sub{font-size:1.15rem;margin:22px 0 0;color:#C3D2CD;max-width:38ch}
+.ring{position:absolute;border:2px solid var(--brass);border-radius:50%;opacity:.5}
+.ring.a{width:420px;height:420px;right:-130px;top:-110px}
+.ring.b{width:250px;height:250px;right:-40px;top:-30px;opacity:.85}
+
+/* category nav */
+.cats{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--mist)}
+.cats .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 24px;scrollbar-width:none}
+.cats a{white-space:nowrap;text-decoration:none;padding:6px 14px;border:1px solid var(--mist);border-radius:999px;text-align:center;font-size:.95rem;line-height:1.4}
+.cats a:hover{border-color:var(--brass)}
+
+/* qr */
+.qrsec{padding:56px 0;background:var(--mist)}
+.qrsec .wrap{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
+.qrbox{background:#fff;padding:10px;display:inline-block;line-height:0;border-radius:4px}
+.qrsec h2{margin:0 0 6px;font-size:2.1rem;color:var(--patina);line-height:1.3}
+.qrsec h2 .en{font-size:.45em;color:var(--ink)}
+.url{word-break:break-all;font-size:.9rem;opacity:.8}
+
+/* sections */
+.cat{padding:72px 0 24px}
+.cat:nth-of-type(even){background:var(--card)}
+.cat h2{font-size:2.1rem;color:var(--patina);line-height:1.3;margin:0}
+.cat h2 .en{font-size:.45em;color:var(--ink)}
+.cat .tl{margin:6px 0 28px;font-size:1.1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding-bottom:48px}
+.card{background:var(--paper);border:1px solid var(--mist);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.ph{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:var(--deep);font-size:3.2rem;text-decoration:none;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.card .info{padding:14px 16px 6px;flex:1}
+.card h3{margin:0;font-size:1.15rem}
+.card h3 a{text-decoration:none}
+.card p{margin:6px 0 0;font-size:.95rem}
+.card .qrbox{margin:10px 16px 16px;align-self:flex-start;padding:6px}
+.soon{padding:20px;border:1px dashed var(--brass);border-radius:6px;margin-bottom:48px;text-align:center;color:var(--patina)}
+
+/* item page */
+.bar{background:var(--deep);color:#EEF2EE}
+.item{max-width:720px;margin:0 auto;padding:32px 24px 64px}
+.back{display:inline-block;margin-bottom:20px;text-decoration:none;color:var(--patina);border-bottom:1px solid var(--brass)}
+.item .ph{border-radius:6px;aspect-ratio:4/3;font-size:5rem}
+.item h1{font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.3;margin:26px 0 0;color:var(--patina)}
+.item .badge{color:var(--brass);letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;margin:18px 0 0}
+.item .desc{font-size:1.15rem;margin:16px 0 28px}
+.item .qrwrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--mist)}
+
+footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
+
+</style>
+</head>
+<body data-lang="both">
+<div class="bar">
+  <div class="wrap">
+    <header>
+      <b><a href="index.html"><span class="ml">ബറാക്കിയ്യ</span><span class="en">Baraqiyya</span></a></b>
+      <div class="lang" role="group" aria-label="Language / ഭാഷ">
+        <button data-set="ml" aria-pressed="false">മലയാളം</button>
+        <button data-set="en" aria-pressed="false">English</button>
+        <button data-set="both" aria-pressed="true">ML + EN</button>
+      </div>
+    </header>
+  </div>
+</div>
+
+<main class="item" id="item"></main>
+
+<footer><div class="wrap"><span class="ml">© ബറാക്കിയ്യ</span><span class="en">© Baraqiyya</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// ===== Edit this file to add items =====
+var SITE_URL = ""; // leave empty: the QR uses the address the site is opened at
+
+var CATS = [
+  {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too."},
+  {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars."},
+  {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins."},
+  {id:"notes", icon:"💵", ml:"നോട്ടുകൾ", en:"Notes", tml:"കറൻസി നോട്ടുകൾ.", ten:"Currency notes."},
+  {id:"crafts", icon:"🎨", ml:"ഹാൻഡ് ക്രാഫ്റ്റ്സ്", en:"Handicrafts", tml:"കൈകൊണ്ട് ഉണ്ടാക്കിയവ.", ten:"Made by hand."}
+];
+
+// One line per item. id = unique, letters/numbers/dashes only. img is optional (photo file in the images folder).
+// {id:"lamp-1", cat:"antiques", ml:"ഓട്ടുവിളക്ക്", en:"Brass lamp", dml:"വിവരണം", den:"Description", img:"images/lamp-1.jpg"},
+var ITEMS = [
+];
+// =======================================
+
+var ROOT = SITE_URL ? (SITE_URL.slice(-1)==="/" ? SITE_URL : SITE_URL+"/") : new URL("./",location.href).href;
+function itemUrl(id){ return ROOT+"item.html?id="+encodeURIComponent(id); }
+function t(ml,en){ return '<span class="ml">'+ml+'</span><span class="en">'+en+'</span>'; }
+function catOf(id){ return CATS.filter(function(c){return c.id===id;})[0]||CATS[0]; }
+function photo(it){ return it.img ? '<img src="'+it.img+'" alt="'+it.en+'" loading="lazy">' : catOf(it.cat).icon; }
+function qr(el,text,size){
+  el.innerHTML="";
+  try{ new QRCode(el,{text:text,width:size,height:size,colorDark:"#0F2A26",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M}); }
+  catch(e){ el.style.lineHeight="1.3"; el.style.fontSize="12px"; el.textContent=text; }
+}
+(function(){
+  var buttons=document.querySelectorAll(".lang button");
+  function setLang(l){
+    document.body.setAttribute("data-lang",l);
+    document.documentElement.lang = l==="en"?"en":"ml";
+    buttons.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.set===l);});
+    try{localStorage.setItem("lang",l);}catch(e){}
+  }
+  buttons.forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.set);});});
+  try{var s=localStorage.getItem("lang"); if(s) setLang(s);}catch(e){}
+})();
+
+</script>
+<script>
+var id=new URLSearchParams(location.search).get("id"), it=null;
+ITEMS.forEach(function(i){ if(i.id===id) it=i; });
+var main=document.getElementById("item");
+if(!it){
+  main.innerHTML='<a class="back" href="index.html">← '+t("തിരികെ","Back")+'</a><h1>'+t("ഈ ഇനം കണ്ടെത്തിയില്ല","Item not found")+'</h1>';
+}else{
+  var c=catOf(it.cat);
+  document.title=it.ml+" | "+it.en+" | Baraqiyya";
+  main.innerHTML=
+    '<a class="back" href="index.html#'+c.id+'">← '+t(c.ml,c.en)+'</a>'+
+    '<div class="ph">'+photo(it)+'</div>'+
+    '<p class="badge">'+c.icon+' '+t(c.ml,c.en)+'</p>'+
+    '<h1>'+t(it.ml,it.en)+'</h1>'+
+    (it.dml?'<p class="desc">'+t(it.dml,it.den||"")+'</p>':'<div style="height:24px"></div>')+
+    '<div class="qrwrap"><div class="qrbox" id="iqr"></div><div class="url">'+t("ഈ QR സ്കാൻ ചെയ്താൽ ഈ പേജ് തുറക്കും","Scan to open this page")+'</div></div>';
+  qr(document.getElementById("iqr"),itemUrl(it.id),200);
+}
+</script>
+</body>
+</html>

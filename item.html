@@ -93,6 +93,18 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .item .desc{font-size:1.15rem;margin:16px 0 28px}
 .item .qrwrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--mist)}
 
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.toprow .back{margin-bottom:0}
+.qrbtn{font:inherit;cursor:pointer;padding:6px 18px;border:1px solid var(--brass);border-radius:999px;background:none;color:var(--ink);line-height:1.4;text-align:center}
+.qrbtn:hover{background:var(--brass);color:#14100A}
+#qrpop{position:fixed;inset:0;z-index:30;background:rgba(5,12,10,.78);display:flex;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#qrpop[hidden]{display:none}
+.popcard{background:var(--paper);border-radius:14px;padding:28px 22px 24px;text-align:center;max-width:380px;width:100%;position:relative;margin:auto}
+.popcard h2{margin:0 0 16px;font-size:1.15rem;color:var(--patina);line-height:1.5;padding:0 28px}
+.popcard .qrbox{padding:18px;border-radius:10px}
+.popcard canvas{display:block;max-width:100%;height:auto!important}
+.popcard .url{margin-top:16px}
+.xbtn{position:absolute;top:10px;inset-inline-end:10px;width:40px;height:40px;border-radius:50%;border:0;background:var(--deep);color:#fff;font-size:1.4rem;line-height:1;cursor:pointer}
 footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
@@ -117,6 +129,15 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 <main class="item" id="item"></main>
 
 <footer><div class="wrap"><span class="ml">© ബറാക്കിയ്യ</span><span class="en">© Baraqiyya</span><span class="ar">© براقية</span></div></footer>
+
+<div id="qrpop" hidden>
+  <div class="popcard" role="dialog" aria-modal="true" aria-labelledby="popt">
+    <button class="xbtn" id="qrclose" type="button" aria-label="Close">×</button>
+    <h2 id="popt"></h2>
+    <div class="qrbox" id="popqr"></div>
+    <div class="url"><span class="ml">ഈ QR സ്കാൻ ചെയ്താൽ ഈ പേജ് തുറക്കും</span><span class="en">Scan to open this page</span><span class="ar">امسح الرمز لفتح هذه الصفحة</span></div>
+  </div>
+</div>
 
 <script>
 /* QR encoder: QRCode for JavaScript, (c) 2009 Kazuhiko Arase, MIT license. QR Code is a registered trademark of DENSO WAVE INCORPORATED. */
@@ -1103,13 +1124,20 @@ if(!it){
   var c=catOf(it.cat);
   document.title=it.ml+" | "+it.en+" | Baraqiyya";
   main.innerHTML=
-    '<a class="back" href="category.html?c='+c.id+'">← '+t(c.ml,c.en,c.ar)+'</a>'+
+    '<div class="toprow"><a class="back" href="category.html?c='+c.id+'">← '+t(c.ml,c.en,c.ar)+'</a>'+
+    '<button class="qrbtn" id="qrbtn" type="button" aria-haspopup="dialog">'+t("QR കോഡ്","QR code","رمز QR")+'</button></div>'+
     '<div class="ph">'+photo(it)+'</div>'+
     '<p class="badge">'+c.icon+' '+t(c.ml,c.en,c.ar)+'</p>'+
     '<h1>'+t(it.ml,it.en,it.ar)+'</h1>'+
-    (it.dml?'<p class="desc">'+t(it.dml,it.den||"",it.dar)+'</p>':'<div style="height:24px"></div>')+
-    '<div class="qrwrap"><div class="qrbox" id="iqr"></div><div class="url">'+t("ഈ QR സ്കാൻ ചെയ്താൽ ഈ പേജ് തുറക്കും","Scan to open this page","امسح الرمز لفتح هذه الصفحة")+'</div></div>';
-  qr(document.getElementById("iqr"),itemUrl(it.id),200);
+    (it.dml?'<p class="desc">'+t(it.dml,it.den||"",it.dar)+'</p>':'');
+  var pop=document.getElementById("qrpop");
+  document.getElementById("popt").innerHTML=t(it.ml,it.en,it.ar);
+  function openQR(){ qr(document.getElementById("popqr"),itemUrl(it.id),512,280); pop.hidden=false; document.body.style.overflow="hidden"; document.getElementById("qrclose").focus(); }
+  function closeQR(){ pop.hidden=true; document.body.style.overflow=""; document.getElementById("qrbtn").focus(); }
+  document.getElementById("qrbtn").addEventListener("click",openQR);
+  document.getElementById("qrclose").addEventListener("click",closeQR);
+  pop.addEventListener("click",function(e){ if(e.target===pop) closeQR(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!pop.hidden) closeQR(); });
 }
 </script>
 </body>

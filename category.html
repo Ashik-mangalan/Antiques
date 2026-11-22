@@ -93,6 +93,12 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .item .desc{font-size:1.15rem;margin:16px 0 28px}
 .item .qrwrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--mist)}
 
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding-bottom:56px}
+.tile{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:88px;padding:14px 16px;background:var(--card);border:1px solid var(--mist);border-radius:10px;text-decoration:none;transition:border-color .15s,transform .15s}
+.tile:hover{border-color:var(--brass);transform:translateY(-2px)}
+.tile .no{color:var(--brass);font-size:.8rem;letter-spacing:.08em}
+.tile .nm{font-size:1.05rem;line-height:1.5}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
 footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
@@ -1102,14 +1108,10 @@ if(!c){
 }else{
   document.title=c.ml+" | "+c.en+" | Baraqiyya";
   var list=ITEMS.filter(function(i){return i.cat===c.id;});
-  var body=list.length?'<div class="grid">'+list.map(function(i){
-    var href='item.html?id='+encodeURIComponent(i.id);
-    return '<article class="card"><a class="ph" href="'+href+'" aria-label="'+i.en+'">'+photo(i)+'</a>'+
-      '<div class="info"><h3><a href="'+href+'">'+t(i.ml,i.en,i.ar)+'</a></h3></div>'+
-      '<div class="qrbox" data-q="'+i.id+'"></div></article>';
+  var body=list.length?'<div class="tiles">'+list.map(function(i,n){
+    return '<a class="tile" href="item.html?id='+encodeURIComponent(i.id)+'"><span class="no">'+(n+1)+'</span><span class="nm">'+t(i.ml,i.en,i.ar)+'</span></a>';
   }).join("")+'</div>':'<div class="soon">'+t("ഉടൻ ഇവിടെ വരും","Coming soon","قريبًا")+'</div>';
   main.innerHTML='<section class="cat"><div class="wrap"><a class="back" href="index.html">← '+t("ബറാക്കിയ്യ","Baraqiyya","براقية")+'</a><h2>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h2><p class="tl">'+t(c.tml,c.ten,c.tar)+'</p>'+body+'</div></section>';
-  document.querySelectorAll("[data-q]").forEach(function(el){ qr(el,itemUrl(el.getAttribute("data-q")),84); });
 }
 </script>
 </body>

@@ -74,7 +74,7 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .cat .tl{margin:6px 0 28px;font-size:1.1rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding-bottom:48px}
 .card{background:var(--paper);border:1px solid var(--mist);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
-.ph{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;background:var(--deep);font-size:3.2rem;text-decoration:none;overflow:hidden}
+.ph{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;background:var(--deep);font-size:3.2rem;text-decoration:none;overflow:hidden}
 .ph img{width:100%;height:100%;object-fit:cover}
 .card .info{padding:14px 16px 6px;flex:1}
 .card h3{margin:0;font-size:1.15rem}
@@ -87,7 +87,8 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .bar{background:var(--deep);color:#EEF2EE}
 .item{max-width:720px;margin:0 auto;padding:32px 24px 64px}
 .back{display:inline-block;margin-bottom:20px;text-decoration:none;color:var(--patina);border-bottom:1px solid var(--brass)}
-.item .ph{border-radius:6px;aspect-ratio:4/3;font-size:5rem}
+.item .ph{border-radius:6px;aspect-ratio:auto;min-height:200px;font-size:5rem}
+.item .ph img{height:auto;max-height:78vh;object-fit:contain}
 .item h1{font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.3;margin:26px 0 0;color:var(--patina)}
 .item .badge{color:var(--brass);letter-spacing:.1em;text-transform:uppercase;font-size:.85rem;margin:18px 0 0}
 .item .desc{font-size:1.15rem;margin:16px 0 28px}
@@ -95,6 +96,22 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 
 .foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .flink{color:var(--brass);text-decoration:none;border-bottom:1px solid var(--brass);text-align:center}
+.home{padding:64px 0 72px}
+.home h2{font-size:2.1rem;color:var(--patina);margin:0;line-height:1.3}
+.home h2 .en{font-size:.45em;color:var(--ink)}
+.home .tl{margin:6px 0 28px}
+.catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.catcard{display:flex;flex-direction:column;text-decoration:none;background:var(--card);border:1px solid var(--mist);border-radius:10px;overflow:hidden;transition:transform .15s,border-color .15s}
+.catcard:hover{border-color:var(--brass);transform:translateY(-2px)}
+.catcard .cv{aspect-ratio:4/3;background:var(--deep);display:flex;align-items:center;justify-content:center;font-size:4rem;overflow:hidden}
+.catcard .cv img{width:100%;height:100%;object-fit:cover}
+.catcard .cb{padding:16px 18px 18px}
+.catcard h3{margin:0;font-size:1.35rem;color:var(--patina);line-height:1.4}
+.catcard h3 .en{color:var(--ink)}
+.catcard p{margin:6px 0 0;font-size:.95rem}
+.catcard .cnt{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--brass);font-size:.95rem}
+html[dir="rtl"] .arr{display:inline-block;transform:scaleX(-1)}
+@media (prefers-reduced-motion:reduce){.catcard{transition:none}}
 footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
@@ -123,10 +140,14 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
   </div>
 </div>
 
-<nav class="cats" id="catnav" aria-label="Sections"><div class="wrap"></div></nav>
-
 <main>
-  <div id="cats"></div>
+  <section class="home" id="collection">
+    <div class="wrap">
+      <h2><span class="ml">ശേഖരം</span><span class="en">Collection</span><span class="ar">المجموعة</span></h2>
+      <p class="tl"><span class="ml">ഒരു വിഭാഗം തിരഞ്ഞെടുക്കൂ.</span><span class="en">Choose a section.</span><span class="ar">اختر قسمًا.</span></p>
+      <div class="catgrid" id="catgrid"></div>
+    </div>
+  </section>
 </main>
 
 <footer><div class="wrap foot"><div><span class="ml">© ബറാക്കിയ്യ</span><span class="en">© Baraqiyya</span><span class="ar">© براقية</span></div><a class="flink" href="qr.html"><span class="ml">QR കോഡ്</span><span class="en">QR code</span><span class="ar">رمز QR</span></a></div></footer>
@@ -1038,6 +1059,32 @@ var CATS = [
 // (ar and dar are the Arabic name and description, optional)
 // {id:"lamp-1", cat:"antiques", ml:"ഓട്ടുവിളക്ക്", en:"Brass lamp", dml:"വിവരണം", den:"Description", img:"images/lamp-1.jpg"},
 var ITEMS = [
+  {id:"antique-1", cat:"antiques", ml:"കിണ്ടി", en:"Kindi", ar:"كيندي (إبريق نحاسي)", dml:"കൈകാൽ കഴുകുന്നതിനും പൂജാദി കർമ്മങ്ങൾക്കും വീടുകളിൽ ശുദ്ധജലം സൂക്ഷിക്കുന്നതിനും പണ്ടുകാലത്ത് ഉപയോഗിച്ചിരുന്ന ഓട്ടുപാത്രം.", den:"A brass vessel traditionally used for washing hands and feet, for puja rituals and for keeping clean water at home.", dar:"إناء نحاسي كان يُستخدم قديمًا لغسل اليدين والقدمين وللطقوس الدينية ولحفظ الماء النظيف في البيوت.", img:"antique-1.jpg"},
+  {id:"antique-2", cat:"antiques", ml:"ചെറിയ കിണ്ടി", en:"Small Kindi", ar:"كيندي صغير", dml:"ക്ഷേത്രങ്ങളിലും വീടുകളിലും ആചാരപരമായ ആവശ്യങ്ങൾക്കും ശുദ്ധജലം എടുക്കുന്നതിനും ഉപയോഗിച്ചിരുന്ന മറ്റൊരു ആകൃതിയിലുള്ള കിണ്ടി.", den:"A kindi of another shape, used in temples and homes for rituals and for drawing clean water.", dar:"كيندي بشكل آخر، كان يُستخدم في المعابد والبيوت للطقوس ولأخذ الماء النظيف.", img:"antique-2.jpg"},
+  {id:"antique-3", cat:"antiques", ml:"ആനത്തോട്ടി / ഊന്നുവടി", en:"Elephant Goad / Walking Stick", ar:"منخاس الفيل / عصا المشي", dml:"ആനകളെ നിയന്ത്രിക്കാനും പരിശീലിപ്പിക്കാനും പാപ്പാന്മാർ ഉപയോഗിക്കുന്ന ഉപകരണമായ തോട്ടി, അല്ലെങ്കിൽ പ്രമാണിമാർ പദവിയുടെ ചിഹ്നമായി ഉപയോഗിച്ചിരുന്ന പിത്തള പിടിയുള്ള ഊന്നുവടി.", den:"A goad used by mahouts to control and train elephants, or a walking stick with a brass handle carried by notables as a sign of rank.", dar:"منخاس يستخدمه مروّضو الفيلة للتحكم بها وتدريبها، أو عصا بمقبض نحاسي كان الوجهاء يحملونها رمزًا للمكانة.", img:"antique-3.jpg"},
+  {id:"antique-4", cat:"antiques", ml:"സുറുമക്കുറ്റി / അഞ്ജനക്കുറ്റി", en:"Kohl / Surma Container", ar:"وعاء الكحل (السرمة)", dml:"കണ്ണിൽ എഴുതാനുള്ള സുറുമ അല്ലെങ്കിൽ കൺമഷി സൂക്ഷിക്കുന്ന പാത്രം. അടപ്പിനോട് ചേർന്നുള്ള നേർത്ത ദണ്ഡ് ഉപയോഗിച്ചാണ് കണ്ണിൽ സുറുമ എഴുതിയിരുന്നത്.", den:"A container for kohl (surma). The thin rod attached to the lid was used to apply it to the eyes.", dar:"وعاء لحفظ الكحل (السرمة). كانت عصا رفيعة متصلة بالغطاء تُستخدم لوضعه في العين.", img:"antique-4.jpg"},
+  {id:"antique-5", cat:"antiques", ml:"ഭസ്മക്കുടുക്ക / കുങ്കുമച്ചെപ്പ്", en:"Sacred Ash / Kumkum Container", ar:"وعاء الرماد المقدس والكُمكُم", dml:"ക്ഷേത്രങ്ങളിലും വീടുകളിലും പൂജാമുറികളിലും ഭസ്മം, ചന്ദനം, കുങ്കുമം എന്നിവ സൂക്ഷിക്കാൻ ഉപയോഗിച്ചിരുന്ന അടപ്പോടുകൂടിയ ഓട്ടുപാത്രം.", den:"A lidded brass container used in temples, homes and prayer rooms to keep sacred ash, sandalwood paste and kumkum.", dar:"وعاء نحاسي بغطاء كان يُستخدم في المعابد والبيوت وغرف العبادة لحفظ الرماد المقدس ومعجون الصندل والكُمكُم.", img:"antique-5.jpg"},
+  {id:"antique-6", cat:"antiques", ml:"പനിനീർത്തളി", en:"Rose Water Sprinkler", ar:"مرشّة ماء الورد", dml:"വിവാഹങ്ങൾ, ഉത്സവങ്ങൾ, വിശേഷാവസരങ്ങൾ എന്നിവയിൽ അതിഥികളെ സ്വീകരിക്കുമ്പോൾ അവരുടെ മേൽ പനിനീർ (Rose water) തളിക്കാൻ ഉപയോഗിച്ചിരുന്ന ഉപകരണം.", den:"Used to sprinkle rose water on guests at weddings, festivals and special occasions.", dar:"كانت تُستخدم لرشّ ماء الورد على الضيوف في الأعراس والمهرجانات والمناسبات الخاصة.", img:"antique-6.jpg"},
+  {id:"antique-7", cat:"antiques", ml:"ആറന്മുള കണ്ണാടി", en:"Aranmula Kannadi", ar:"مرآة أرانمولا", dml:"കേരളത്തിലെ ആറന്മുളയിൽ പ്രത്യേക ലോഹക്കൂട്ടുകൾ ഉപയോഗിച്ച് നിർമ്മിക്കുന്ന പ്രശസ്തമായ ലോഹക്കണ്ണാടി. ഐശ്വര്യത്തിന്റെ പ്രതീകമായി വീടുകളിലും അഷ്ടമംഗല്യത്തിലും ഉപയോഗിക്കുന്നു.", den:"A famous metal mirror made in Aranmula, Kerala, from a special alloy. It is a symbol of prosperity, used in homes and in the Ashtamangalyam.", dar:"مرآة معدنية مشهورة تُصنع في أرانمولا بولاية كيرالا من سبيكة خاصة. وهي رمز للخير والبركة وتُستخدم في البيوت وفي «أشتامنغليم».", img:"antique-7.jpg"},
+  {id:"antique-8", cat:"antiques", ml:"മരവുരലും ഉലക്കയും", en:"Wooden Mortar and Pestle", ar:"هاون ومدقّة خشبيان", dml:"പച്ചമരുന്നുകൾ, സുഗന്ധവ്യഞ്ജനങ്ങൾ, വെറ്റില മുറുക്കാനുള്ള സാധനങ്ങൾ എന്നിവ ഇടിച്ചുപൊടിക്കാൻ വീടുകളിൽ ഉപയോഗിച്ചിരുന്ന ഉപകരണം.", den:"Used in homes to pound herbs, spices and betel-chewing ingredients.", dar:"كان يُستخدم في البيوت لدقّ الأعشاب والتوابل ومكوّنات مضغ التنبول.", img:"antique-8.jpg"},
+  {id:"antique-9", cat:"antiques", ml:"കൈതുരപ്പൻ", en:"Hand Drill", ar:"مثقاب يدوي", dml:"വൈദ്യുതി ഇല്ലാതിരുന്ന കാലത്ത് ആശാരിമാരും മറ്റ് കൈത്തൊഴിലാളികളും തടികളിലും ലോഹങ്ങളിലും തുളയിടാൻ ഉപയോഗിച്ചിരുന്ന കൈകൊണ്ട് പ്രവർത്തിപ്പിക്കുന്ന യന്ത്രം.", den:"A hand-operated tool used by carpenters and other craftsmen to drill holes in wood and metal before electricity.", dar:"أداة تُدار باليد كان النجّارون والحرفيون يستخدمونها لثقب الخشب والمعدن قبل وجود الكهرباء.", img:"antique-9.jpg"},
+  {id:"antique-10", cat:"antiques", ml:"വലിയ കിണ്ടി", en:"Large Kindi", ar:"كيندي كبير", dml:"പഴയകാല തറവാടുകളുടെ ഉമ്മറത്തും ക്ഷേത്രങ്ങളിലും കൈകാൽ കഴുകാനും മറ്റും വെള്ളം നിറച്ചുവെക്കാൻ ഉപയോഗിച്ചിരുന്ന വലിയ ഓട്ടുകിണ്ടി.", den:"A large brass kindi kept on the veranda of old family houses and in temples, filled with water for washing hands and feet.", dar:"كيندي نحاسي كبير كان يُوضع في شرفات البيوت القديمة وفي المعابد مملوءًا بالماء لغسل اليدين والقدمين.", img:"antique-10.jpg"},
+  {id:"antique-11", cat:"antiques", ml:"പനിനീർത്തളി (മറ്റൊരു രൂപം)", en:"Rose Water Sprinkler (Variant)", ar:"مرشّة ماء الورد (نموذج آخر)", dml:"വിശേഷാവസരങ്ങളിൽ അതിഥികളുടെ മേൽ പനിനീർ തളിക്കാൻ ഉപയോഗിച്ചിരുന്ന നീളമുള്ള കഴുത്തോടുകൂടിയ ലോഹപ്പാത്രം.", den:"A long-necked metal vessel used to sprinkle rose water on guests on special occasions.", dar:"إناء معدني ذو عنق طويل كان يُستخدم لرشّ ماء الورد على الضيوف في المناسبات الخاصة.", img:"antique-11.jpg"},
+  {id:"antique-12", cat:"antiques", ml:"റാന്തൽ വിളക്ക് / ഹരിക്കേൻ ലാമ്പ്", en:"Hurricane Lantern", ar:"فانوس العاصفة", dml:"വൈദ്യുതി ഇല്ലാതിരുന്ന കാലത്ത് വീടുകളിലും രാത്രിയാത്രകളിലും വെളിച്ചത്തിനായി മണ്ണെണ്ണ ഒഴിച്ച് കത്തിച്ചിരുന്ന വിളക്ക്.", den:"A lamp filled with kerosene and burned for light in homes and on night journeys before electricity.", dar:"مصباح يُملأ بالكيروسين ويُشعل للإضاءة في البيوت وفي رحلات الليل قبل وجود الكهرباء.", img:"antique-12.jpg"},
+  {id:"antique-13", cat:"antiques", ml:"ഖുക്രി കത്തി", en:"Kukri Knife", ar:"سكين الكوكري", dml:"നേപ്പാളിലെയും ഗൂർഖ സൈനികരുടെയും പരമ്പരാഗതമായ വളഞ്ഞ കത്തി. യുദ്ധോപകരണമായും മറ്റ് ആവശ്യങ്ങൾക്കും ഉപയോഗിച്ചിരുന്നു.", den:"The traditional curved knife of Nepal and the Gurkha soldiers, used as a weapon and for everyday work.", dar:"السكين المنحنية التقليدية في نيبال وعند جنود الغورخا، كانت تُستخدم سلاحًا ولأغراض أخرى.", img:"antique-13.jpg"},
+  {id:"antique-14", cat:"antiques", ml:"കോളാമ്പി / തുപ്പൽ കോളാമ്പി", en:"Spittoon", ar:"مبصقة", dml:"പണ്ടുകാലത്ത് വെറ്റില മുറുക്കുന്നവർക്ക് മുറുക്കാൻ തുപ്പുന്നതിനായി വീടുകളിൽ വെച്ചിരുന്ന ഓട്ടുപാത്രം.", den:"A brass vessel kept in homes in the old days for people who chew betel to spit into.", dar:"إناء نحاسي كان يُوضع في البيوت قديمًا لمن يمضغون التنبول ليبصقوا فيه.", img:"antique-14.jpg"},
+  {id:"antique-15", cat:"antiques", ml:"ചുമ്മാട്", en:"Head Pad (Chummad)", ar:"وسادة الرأس (تشمّاد)", dml:"തലയിൽ ഭാരമുള്ള ചുമടുകളോ കുടങ്ങളോ എടുക്കുമ്പോൾ തലയ്ക്ക് വേദന ഏൽക്കാതിരിക്കാൻ തലയ്ക്ക് മുകളിൽ വെക്കുന്ന വൃത്താകൃതിയിലുള്ള വസ്തു.", den:"A ring-shaped pad placed on the head to cushion heavy loads or pots when carrying them.", dar:"حلقة توضع على الرأس لتخفيف أثر الأحمال الثقيلة أو الجرار عند حملها.", img:"antique-15.jpg"},
+  {id:"antique-16", cat:"antiques", ml:"മണ്ണെണ്ണ വിളക്ക് / ചിമ്മിനി വിളക്ക്", en:"Kerosene Lamp", ar:"مصباح الكيروسين", dml:"വീടുകളിൽ രാത്രികാലങ്ങളിൽ വെളിച്ചത്തിനായി മണ്ണെണ്ണയും തിരിയും ഉപയോഗിച്ച് കത്തിച്ചിരുന്ന ലോഹവിളക്ക്.", den:"A metal lamp burned at night in homes with kerosene and a wick.", dar:"مصباح معدني كان يُشعل في البيوت ليلًا بالكيروسين والفتيلة.", img:"antique-16.jpg"},
+  {id:"antique-17", cat:"antiques", ml:"മണ്ണെണ്ണ വിളക്ക് / തട്ടുവിളക്ക്", en:"Kerosene Lamp (Variant)", ar:"مصباح الكيروسين (نموذج آخر)", dml:"പഴയകാലത്ത് വീടുകളിലും കടകളിലും വെളിച്ചത്തിനായി മണ്ണെണ്ണ ഒഴിച്ച് കത്തിച്ചിരുന്ന മറ്റൊരു തരം വിളക്ക്.", den:"Another type of kerosene lamp used for light in homes and shops in the old days.", dar:"نوع آخر من مصابيح الكيروسين كان يُستخدم للإضاءة في البيوت والدكاكين قديمًا.", img:"antique-17.jpg"},
+  {id:"antique-18", cat:"antiques", ml:"കരി ഇസ്തിരിപ്പെട്ടി", en:"Charcoal Iron Box", ar:"مكواة الفحم", dml:"വൈദ്യുതി ഇല്ലാതിരുന്ന കാലത്ത് ഉള്ളിൽ കത്തിച്ച ചിരട്ടക്കരി നിറച്ച് വസ്ത്രങ്ങൾ ഇസ്തിരിയിടാൻ ഉപയോഗിച്ചിരുന്ന ഇരുമ്പ് പെട്ടി.", den:"An iron box filled with burning coconut-shell charcoal, used to iron clothes before electricity.", dar:"صندوق حديدي يُملأ بفحم قشور جوز الهند المشتعل وكان يُستخدم لكيّ الملابس قبل وجود الكهرباء.", img:"antique-18.jpg"},
+  {id:"antique-19", cat:"antiques", ml:"കോളാമ്പി / കാൽ കഴുകുന്ന പാത്രം", en:"Spittoon / Basin", ar:"مبصقة / وعاء غسل القدمين", dml:"വെറ്റില മുറുക്കി തുപ്പുന്നതിനുള്ള കോളാമ്പിയായോ, കൈകാൽ കഴുകുന്നതിനുള്ള പാത്രമായോ ഉപയോഗിച്ചിരുന്ന ഓട്ടുപാത്രം.", den:"A brass vessel used either as a spittoon for betel chewers or as a basin for washing hands and feet.", dar:"إناء نحاسي كان يُستخدم مبصقةً لمن يمضغون التنبول أو وعاءً لغسل اليدين والقدمين.", img:"antique-19.jpg"},
+  {id:"antique-20", cat:"antiques", ml:"ചെമ്പ് കെറ്റിൽ", en:"Copper Kettle", ar:"غلاية نحاسية", dml:"വെള്ളം തിളപ്പിക്കാനും ചായയും കാപ്പിയും മറ്റും ഉണ്ടാക്കി പകർന്നൊഴിക്കാനും ഉപയോഗിച്ചിരുന്ന ചെമ്പ് പാത്രം.", den:"A copper pot used to boil water and to make and pour tea and coffee.", dar:"إناء نحاسي كان يُستخدم لغلي الماء وإعداد الشاي والقهوة وصبّهما.", img:"antique-20.jpg"},
+  {id:"antique-21", cat:"antiques", ml:"മുളങ്കുറ്റി / ഉപ്പുകുറ്റി", en:"Bamboo Container", ar:"وعاء من الخيزران", dml:"അടുക്കളകളിൽ ഉപ്പ്, മുളക്, മല്ലി, പയറുവർഗ്ഗങ്ങൾ എന്നിവ ഈർപ്പം തട്ടാതെ സൂക്ഷിക്കുന്നതിനായി ഉപയോഗിച്ചിരുന്ന മുളകൊണ്ടുള്ള കുറ്റി.", den:"A bamboo container used in kitchens to keep salt, chilli, coriander and pulses dry.", dar:"وعاء من الخيزران كان يُستخدم في المطابخ لحفظ الملح والفلفل والكزبرة والبقوليات بعيدًا عن الرطوبة.", img:"antique-21.jpg"},
+  {id:"antique-22", cat:"antiques", ml:"ചെമ്പ് കിണ്ണം / വട്ടക", en:"Copper Bowl", ar:"وعاء نحاسي", dml:"ഭക്ഷണം കഴിക്കുന്നതിനും കറികളും പായസവും വിളമ്പുന്നതിനും പൂജാ ആവശ്യങ്ങൾക്കും ഉപയോഗിച്ചിരുന്ന ചെമ്പ് പാത്രം.", den:"A copper vessel used for eating, for serving curries and payasam, and for puja.", dar:"إناء نحاسي كان يُستخدم للأكل ولتقديم الأطباق والحلوى (البايسام) وفي الطقوس الدينية.", img:"antique-22.jpg"},
+  {id:"antique-23", cat:"antiques", ml:"അടപ്പലക / ചിരട്ടത്തവി", en:"Pot Lid / Wooden Cover", ar:"غطاء قدر خشبي", dml:"കലങ്ങളിലും ഉരുളികളിലും ഭക്ഷണം പാകം ചെയ്യുമ്പോഴും സൂക്ഷിക്കുമ്പോഴും അവ മൂടിവെക്കാൻ ഉപയോഗിച്ചിരുന്ന തടിപ്പിടിയുള്ള അടപ്പ്.", den:"A lid with a wooden handle, used to cover pots and uruli while cooking and storing food.", dar:"غطاء بمقبض خشبي كان يُستخدم لتغطية القدور والأواني أثناء الطهي وحفظ الطعام.", img:"antique-23.jpg"},
+  {id:"antique-24", cat:"antiques", ml:"പറ", en:"Para (Traditional Grain Measure)", ar:"«بارا» (مكيال الحبوب التقليدي)", dml:"നെല്ല്, അരി തുടങ്ങിയ ധാന്യങ്ങൾ അളക്കാൻ ഉപയോഗിച്ചിരുന്ന പ്രധാന അളവുപാത്രം. ക്ഷേത്രങ്ങളിൽ 'നിറപറ' വെക്കാനും ഉപയോഗിക്കുന്നു.", den:"The main traditional measure for grains such as paddy and rice. It is also used to place the 'nirapara' in temples.", dar:"المكيال التقليدي الرئيسي للحبوب مثل الأرز والشلب، ويُستخدم أيضًا لوضع «نيرابارا» في المعابد.", img:"antique-24.jpg"},
+  {id:"antique-25", cat:"antiques", ml:"ഇടങ്ങഴി / നാഴി", en:"Edangazhi / Nazhi", ar:"«إدنغزي / نازي» (مكيال الحبوب)", dml:"പറയെക്കാൾ ചെറിയ അളവിൽ അരി, നെല്ല്, എള്ള് തുടങ്ങിയ ധാന്യങ്ങൾ അളക്കാൻ ഉപയോഗിച്ചിരുന്ന തടിയും ലോഹവും ചേർന്ന അളവുപാത്രം.", den:"A measure of wood and metal, smaller than the para, used for rice, paddy, sesame and other grains.", dar:"مكيال من الخشب والمعدن أصغر من «بارا»، كان يُستخدم لقياس الأرز والشلب والسمسم وغيرها من الحبوب.", img:"antique-25.jpg"},
+  {id:"antique-26", cat:"antiques", ml:"ആഭരണപ്പെട്ടി / പണപ്പെട്ടി", en:"Wooden Treasure / Jewelry Box", ar:"صندوق خشبي للمجوهرات والمال", dml:"സ്വർണ്ണാഭരണങ്ങൾ, പണം, താളിയോല ഗ്രന്ഥങ്ങൾ, ആധാരങ്ങൾ തുടങ്ങിയ വിലപിടിപ്പുള്ള വസ്തുക്കൾ പൂട്ടി സൂക്ഷിക്കാൻ ഉപയോഗിച്ചിരുന്ന തടിപ്പെട്ടി.", den:"A wooden box that was locked to keep valuables such as gold jewellery, money, palm-leaf manuscripts and deeds.", dar:"صندوق خشبي كان يُقفل لحفظ الأشياء الثمينة مثل الذهب والمال ومخطوطات سعف النخيل وصكوك الملكية.", img:"antique-26.jpg"},
 ];
 // =======================================
 
@@ -1081,19 +1128,13 @@ function qr(el,text,size,disp){
 
 </script>
 <script>
-var nav=document.querySelector("#catnav .wrap"), out=document.getElementById("cats");
+var grid=document.getElementById("catgrid");
 CATS.forEach(function(c){
-  nav.insertAdjacentHTML("beforeend",'<a href="#'+c.id+'">'+c.icon+' '+t(c.ml,c.en,c.ar)+'</a>');
   var list=ITEMS.filter(function(i){return i.cat===c.id;});
-  var body = list.length ? '<div class="grid">'+list.map(function(i){
-    var href='item.html?id='+encodeURIComponent(i.id);
-    return '<article class="card"><a class="ph" href="'+href+'" aria-label="'+i.en+'">'+photo(i)+'</a>'+
-      '<div class="info"><h3><a href="'+href+'">'+t(i.ml,i.en,i.ar)+'</a></h3>'+(i.dml?'<p>'+t(i.dml,i.den||"",i.dar)+'</p>':'')+'</div>'+
-      '<div class="qrbox" data-q="'+i.id+'"></div></article>';
-  }).join("")+'</div>' : '<div class="soon">'+t("ഉടൻ ഇവിടെ വരും","Coming soon","قريبًا")+'</div>';
-  out.insertAdjacentHTML("beforeend",'<section class="cat" id="'+c.id+'"><div class="wrap"><h2>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h2><p class="tl">'+t(c.tml,c.ten,c.tar)+'</p>'+body+'</div></section>');
+  var cover=(list.length&&list[0].img)?'<img src="'+list[0].img+'" alt="" loading="lazy">':c.icon;
+  var cnt=list.length?t(list.length+" ഇനങ്ങൾ",list.length+" items",list.length+" عنصرًا"):t("ഉടൻ വരും","Coming soon","قريبًا");
+  grid.insertAdjacentHTML("beforeend",'<a class="catcard" href="category.html?c='+c.id+'"><div class="cv">'+cover+'</div><div class="cb"><h3>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h3><p>'+t(c.tml,c.ten,c.tar)+'</p><div class="cnt"><span>'+cnt+'</span><span class="arr">→</span></div></div></a>');
 });
-document.querySelectorAll("[data-q]").forEach(function(el){ qr(el,itemUrl(el.getAttribute("data-q")),84); });
 </script>
 </body>
 </html>

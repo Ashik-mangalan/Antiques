@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ml">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -124,18 +124,18 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 
 </style>
 </head>
-<body data-lang="both">
+<body data-lang="en">
 <div class="hero">
   <div class="ring a"></div><div class="ring b"></div>
   <div class="wrap">
     <header>
       <b><span class="ml">ബറാക്കിയ്യ</span><span class="en">Baraqiyya</span><span class="ar">براقية</span></b>
       <div class="lang">
-        <button class="lang-toggle" id="langToggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language / ഭാഷ"><span aria-hidden="true">🌐</span><span id="langCur">ML + EN</span><span class="lg-car" aria-hidden="true">▾</span></button>
+        <button class="lang-toggle" id="langToggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language / ഭാഷ"><span aria-hidden="true">🌐</span><span id="langCur">English</span><span class="lg-car" aria-hidden="true">▾</span></button>
         <div class="lang-menu" id="langMenu" role="group" aria-label="Language / ഭാഷ" hidden>
           <button data-set="ml" aria-pressed="false">മലയാളം</button>
-          <button data-set="en" aria-pressed="false">English</button>
-          <button data-set="both" aria-pressed="true">ML + EN</button>
+          <button data-set="en" aria-pressed="true">English</button>
+          <button data-set="both" aria-pressed="false">ML + EN</button>
           <button data-set="ar" aria-pressed="false">العربية</button>
         </div>
       </div>
@@ -1129,19 +1129,19 @@ function qr(el,text,size,disp){
   var names={ml:"മലയാളം",en:"English",both:"ML + EN",ar:"العربية"};
   function openMenu(o){ menu.hidden=!o; toggle.setAttribute("aria-expanded",o?"true":"false"); }
   function setLang(l){
-    if(!names[l]) l="both";
+    if(!names[l]) l="en";
     document.body.setAttribute("data-lang",l);
     document.documentElement.lang = l==="en"?"en":(l==="ar"?"ar":"ml");
     document.documentElement.dir = l==="ar"?"rtl":"ltr";
     buttons.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.set===l);});
     cur.textContent=names[l];
-    try{localStorage.setItem("lang",l);}catch(e){}
+    try{sessionStorage.setItem("lang",l);}catch(e){}
   }
   toggle.addEventListener("click",function(e){ e.stopPropagation(); openMenu(menu.hidden); });
   buttons.forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.set); openMenu(false); toggle.focus();});});
   document.addEventListener("click",function(e){ if(!menu.hidden && !menu.contains(e.target)) openMenu(false); });
   document.addEventListener("keydown",function(e){ if(e.key==="Escape" && !menu.hidden){ openMenu(false); toggle.focus(); } });
-  try{var s=localStorage.getItem("lang"); if(s) setLang(s);}catch(e){}
+  try{var s=sessionStorage.getItem("lang"); if(s) setLang(s);}catch(e){}
 })();
 
 </script>

@@ -38,9 +38,15 @@ body[data-lang="both"] .en{display:block;font-family:var(--serif);font-size:.82e
 header{display:flex;justify-content:space-between;align-items:center;padding:22px 0;flex-wrap:wrap;gap:12px;border-bottom:1px solid rgba(212,162,76,.35)}
 header b{font-size:1.3rem}
 header b a{text-decoration:none}
-.lang{display:flex;border:1px solid var(--brass);border-radius:999px;overflow:hidden}
-.lang button{background:none;border:0;color:inherit;font:inherit;font-size:.82rem;padding:5px 14px;cursor:pointer}
-.lang button[aria-pressed="true"]{background:var(--brass);color:#14100A}
+.lang{position:relative;z-index:50}
+.lang-toggle{display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--brass);border-radius:999px;color:inherit;font:inherit;font-size:.82rem;padding:6px 14px;cursor:pointer}
+.lang-toggle .lg-car{font-size:.7rem;transition:transform .15s}
+.lang-toggle[aria-expanded="true"] .lg-car{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;min-width:150px;background:var(--deep);color:#EEF2EE;border:1px solid var(--brass);border-radius:14px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.lang-menu[hidden]{display:none}
+.lang-menu button{display:block;width:100%;text-align:start;background:none;border:0;color:inherit;font:inherit;font-size:.9rem;padding:9px 14px;border-radius:9px;cursor:pointer}
+.lang-menu button:hover{background:rgba(212,162,76,.18)}
+.lang-menu button[aria-pressed="true"]{background:var(--brass);color:#14100A}
 .hero-body{padding:72px 0 88px}
 .rule{width:72px;height:3px;background:var(--brass);margin:0 0 26px;border:0}
 .tag{color:var(--brass);letter-spacing:.12em;text-transform:uppercase;font-size:.9rem;margin:0 0 8px}
@@ -116,11 +122,14 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
   <div class="wrap">
     <header>
       <b><a href="index.html"><span class="ml">ബറാക്കിയ്യ</span><span class="en">Baraqiyya</span><span class="ar">براقية</span></a></b>
-      <div class="lang" role="group" aria-label="Language / ഭാഷ">
-        <button data-set="ml" aria-pressed="false">മലയാളം</button>
-        <button data-set="en" aria-pressed="false">English</button>
-        <button data-set="both" aria-pressed="true">ML + EN</button>
-        <button data-set="ar" aria-pressed="false">العربية</button>
+      <div class="lang">
+        <button class="lang-toggle" id="langToggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Language / ഭാഷ"><span aria-hidden="true">🌐</span><span id="langCur">ML + EN</span><span class="lg-car" aria-hidden="true">▾</span></button>
+        <div class="lang-menu" id="langMenu" role="group" aria-label="Language / ഭാഷ" hidden>
+          <button data-set="ml" aria-pressed="false">മലയാളം</button>
+          <button data-set="en" aria-pressed="false">English</button>
+          <button data-set="both" aria-pressed="true">ML + EN</button>
+          <button data-set="ar" aria-pressed="false">العربية</button>
+        </div>
       </div>
     </header>
   </div>
@@ -1035,6 +1044,7 @@ return {QRCode:req("./index"),EC:req("./QRErrorCorrectLevel")};})();
 var SITE_URL = ""; // leave empty: the QR uses the address the site is opened at
 
 var CATS = [
+  {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ."},
   {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", ar:"التحف القديمة", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too.", tar:"للقديم أيضًا حكاية."},
   {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", ar:"مجموعة السيارات", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
   {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة."},
@@ -1101,15 +1111,23 @@ function qr(el,text,size,disp){
   }catch(e){ el.style.lineHeight="1.3"; el.style.fontSize="12px"; el.textContent=text; }
 }
 (function(){
-  var buttons=document.querySelectorAll(".lang button");
+  var buttons=document.querySelectorAll(".lang-menu button");
+  var toggle=document.getElementById("langToggle"), menu=document.getElementById("langMenu"), cur=document.getElementById("langCur");
+  var names={ml:"മലയാളം",en:"English",both:"ML + EN",ar:"العربية"};
+  function openMenu(o){ menu.hidden=!o; toggle.setAttribute("aria-expanded",o?"true":"false"); }
   function setLang(l){
+    if(!names[l]) l="both";
     document.body.setAttribute("data-lang",l);
     document.documentElement.lang = l==="en"?"en":(l==="ar"?"ar":"ml");
     document.documentElement.dir = l==="ar"?"rtl":"ltr";
     buttons.forEach(function(b){b.setAttribute("aria-pressed",b.dataset.set===l);});
+    cur.textContent=names[l];
     try{localStorage.setItem("lang",l);}catch(e){}
   }
-  buttons.forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.set);});});
+  toggle.addEventListener("click",function(e){ e.stopPropagation(); openMenu(menu.hidden); });
+  buttons.forEach(function(b){b.addEventListener("click",function(){setLang(b.dataset.set); openMenu(false); toggle.focus();});});
+  document.addEventListener("click",function(e){ if(!menu.hidden && !menu.contains(e.target)) openMenu(false); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape" && !menu.hidden){ openMenu(false); toggle.focus(); } });
   try{var s=localStorage.getItem("lang"); if(s) setLang(s);}catch(e){}
 })();
 

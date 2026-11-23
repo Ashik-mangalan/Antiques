@@ -144,7 +144,7 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
       <hr class="rule">
       <p class="tag"><span class="ml">മിനി എക്സ്പോ</span><span class="en">Mini Expo</span><span class="ar">المعرض المصغّر</span></p>
       <h1><span class="ml">ബറാക്കിയ്യ</span><span class="en">Baraqiyya</span><span class="ar">براقية</span></h1>
-      <p class="sub"><span class="ml">ആൻറ്റിക്സ്, കാറുകൾ, നാണയങ്ങൾ, നോട്ടുകൾ, ഹാൻഡ് ക്രാഫ്റ്റ്സ്. ഞങ്ങളുടെ ശേഖരം ഇവിടെ കാണാം.</span><span class="en">Antiques, cars, coins, notes and handicrafts. See our collection here.</span><span class="ar">تحف قديمة، سيارات، عملات معدنية، أوراق نقدية وحرف يدوية. شاهدوا مجموعتنا هنا.</span></p>
+      <p class="sub"><span class="ml">ആൻറ്റിക്സ്, കാറുകൾ, നാണയങ്ങൾ, നോട്ടുകൾ, ക്രാഫ്റ്റ് വർക്ക്സ്. ഞങ്ങളുടെ ശേഖരം ഇവിടെ കാണാം.</span><span class="en">Antiques, cars, coins, notes and craft works. See our collection here.</span><span class="ar">تحف قديمة، سيارات، عملات معدنية، أوراق نقدية وحرف يدوية. شاهدوا مجموعتنا هنا.</span></p>
     </div>
   </div>
 </div>
@@ -1062,7 +1062,7 @@ var CATS = [
   {id:"cars", icon:"🚗", board:"diecast-world.jpg", cpos:"center", nonames:true, thumbs:true, ml:"ഡൈകാസ്റ്റ് വേൾഡ്", en:"Diecast World", ar:"عالم الدايكاست", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
   {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة.", thumbs:true, hml:"നാണയങ്ങളിലൂടെ ഒരു യാത്ര", hen:"A Journey Through Coins", har:"رحلة عبر العملات", charts:[{img:"coins-chart-1.jpg",pins:[{k:"coin-2",x:20.2,y:7.3},{k:"coin-11",x:80.6,y:8.3},{k:"coin-7",x:23.3,y:44.7},{k:"coin-3",x:78.3,y:44.5},{k:"coin-1",x:21.4,y:71.9},{k:"coin-10",x:46.4,y:72.9},{k:"coin-13",x:65.2,y:73.4},{k:"coin-9",x:85.5,y:73.3}]},{img:"coins-chart-2.jpg",pins:[{k:"coin-6",x:12.8,y:3.0},{k:"coin-15",x:39.7,y:3.2},{k:"coin-5",x:81.5,y:3.3},{k:"coin-17",x:14.7,y:37.0},{k:"coin-4",x:48.5,y:38.1},{k:"coin-14",x:78.0,y:37.4},{k:"coin-8",x:15.5,y:66.7},{k:"coin-16",x:48.4,y:66.7},{k:"coin-12",x:83.0,y:65.3}]}]},
   {id:"notes", icon:"💵", ml:"നോട്ടുകൾ", en:"Notes", ar:"الأوراق النقدية", tml:"കറൻസി നോട്ടുകൾ.", ten:"Currency notes.", tar:"أوراق نقدية.", groups:[{id:"indian", ml:"ഇന്ത്യൻ നോട്ടുകൾ", en:"Indian Notes", ar:"أوراق نقدية هندية"}, {id:"foreign", ml:"വിദേശ നോട്ടുകൾ", en:"Foreign Notes", ar:"أوراق نقدية أجنبية"}], thumbs:true},
-  {id:"crafts", icon:"🎨", ml:"ഹാൻഡ് ക്രാഫ്റ്റ്സ്", en:"Handicrafts", ar:"الحرف اليدوية", tml:"കൈകൊണ്ട് ഉണ്ടാക്കിയവ.", ten:"Made by hand.", tar:"صُنعت باليد."}
+  {id:"crafts", icon:"🎨", ml:"ക്രാഫ്റ്റ് വർക്ക്സ്", en:"Craft Works", ar:"الأعمال الحرفية", tml:"കൈകൊണ്ട് ഉണ്ടാക്കിയവ.", ten:"Made by hand.", tar:"صُنعت باليد.", thumbs:true}
 ];
 
 // One line per item. id = unique, letters/numbers/dashes only. img is optional (photo file in the images folder).
@@ -1272,7 +1272,15 @@ var ITEMS = [
   {id:"car-36", cat:"cars", ml:"കറുത്ത കസ്റ്റം ട്രക്ക്", en:"Black Custom Truck", ar:"شاحنة مخصصة سوداء", img:"car-36.jpg"},
   {id:"car-37", cat:"cars", ml:"നീല കസ്റ്റം കാർ", en:"Blue Custom Car", ar:"سيارة مخصصة زرقاء", img:"car-37.jpg"},
   {id:"car-38", cat:"cars", ml:"ലൈറ്റ്നിംഗ് മക്വീൻ (കാർസ്)", en:"Lightning McQueen (Cars)", ar:"البرق ماكوين (Cars)", img:"car-38.jpg"},
-  {id:"car-39", cat:"cars", ml:"വെസ്പ സ്കൂട്ടർ", en:"Vespa Scooter", ar:"سكوتر فيسبا", img:"car-39.jpg"}
+  {id:"car-39", cat:"cars", ml:"വെസ്പ സ്കൂട്ടർ", en:"Vespa Scooter", ar:"سكوتر فيسبا", img:"car-39.jpg"},
+  {id:"craft-1", cat:"crafts", ml:"സ്റ്റേറ്റ് ക്യാപ്പിറ്റൽ അനലൈസർ", en:"State Capital Analyzer", ar:"محلّل عواصم الولايات", img:"craft-1.jpg"},
+  {id:"craft-2", cat:"crafts", ml:"ഭൂകമ്പ അലാറം", en:"Earthquake Alarm", ar:"جهاز إنذار الزلازل", img:"craft-2.jpg"},
+  {id:"craft-3", cat:"crafts", ml:"ഹജ്ജ് റൂട്ട്", en:"Hajj Route", ar:"مسار الحج", img:"craft-3.jpg"},
+  {id:"craft-4", cat:"crafts", ml:"ആന്റിഗ്രാവിറ്റി", en:"Antigravity", ar:"مضاد الجاذبية", img:"craft-4.jpg"},
+  {id:"craft-5", cat:"crafts", ml:"കഅ്ബയുടെ മിനിയേച്ചർ", en:"Miniature of the Kaaba", ar:"نموذج مصغّر للكعبة", img:"craft-5.jpg"},
+  {id:"craft-6", cat:"crafts", ml:"കാർ ഡ്രിഫ്റ്റിംഗ്", en:"Car Drifting", ar:"انزلاق السيارة (دريفت)", img:"craft-6.jpg"},
+  {id:"craft-7", cat:"crafts", ml:"ബസ് വയർ ഗെയിം", en:"Buzz Wire Game", ar:"لعبة السلك الطنّان", img:"craft-7.jpg"},
+  {id:"craft-8", cat:"crafts", ml:"ഹോളോഗ്രാം", en:"Hologram", ar:"الهولوغرام", img:"craft-8.jpg"}
 ];
 // =======================================
 

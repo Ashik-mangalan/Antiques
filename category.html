@@ -68,14 +68,14 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .qrsec .wrap{display:flex;gap:36px;align-items:center;flex-wrap:wrap}
 .qrbox{background:#fff;padding:10px;display:inline-block;line-height:0;border-radius:4px}
 .qrsec h2{margin:0 0 6px;font-size:2.1rem;color:var(--patina);line-height:1.3}
-.qrsec h2 .en{font-size:.45em;color:var(--ink)}
+body[data-lang="both"] .qrsec h2 .en{font-size:.45em;color:var(--ink)}
 .url{word-break:break-all;font-size:.9rem;opacity:.8}
 
 /* sections */
 .cat{padding:72px 0 24px}
 .cat:nth-of-type(even){background:var(--card)}
 .cat h2{font-size:2.1rem;color:var(--patina);line-height:1.3;margin:0}
-.cat h2 .en{font-size:.45em;color:var(--ink)}
+body[data-lang="both"] .cat h2 .en{font-size:.45em;color:var(--ink)}
 .cat .tl{margin:6px 0 28px;font-size:1.1rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;padding-bottom:48px}
 .card{background:var(--paper);border:1px solid var(--mist);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
@@ -105,6 +105,16 @@ body[data-lang="both"] .hero h1 .en{font-weight:600;font-size:.3em;font-style:it
 .tile .no{color:var(--brass);font-size:.8rem;letter-spacing:.08em}
 .tile .nm{font-size:1.05rem;line-height:1.5}
 @media (prefers-reduced-motion:reduce){.tile{transition:none}}
+.cj{font-size:1.7rem;color:var(--patina);margin:26px 0 4px;line-height:1.35}
+body[data-lang="both"] .cj .en{font-size:.55em;color:var(--ink)}
+.cjh.board-hint{margin:0 0 14px;text-align:start}
+.chart{position:relative;margin:0 0 18px;font-size:clamp(11px,2.9vw,15px);cursor:zoom-in}
+.chart img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--mist)}
+.pin{position:absolute;transform:translate(-50%,-50%);background:#EEF0EC;color:#0F2A26;font-weight:700;padding:.15em .55em;border-radius:.5em;white-space:nowrap;text-decoration:none;line-height:1.3;box-shadow:0 0 0 1px rgba(15,42,38,.25);cursor:pointer}
+.pin:hover{background:#fff}
+body[data-lang="both"] .pin .en{display:none}
+.zoomwrap{width:1560px;position:relative}
+.zoomwrap .chart{font-size:24px;margin:0;cursor:default}
 footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
@@ -1042,7 +1052,7 @@ var CATS = [
   {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ.", board:"lineage-board.jpg"},
   {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", ar:"التحف القديمة", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too.", tar:"للقديم أيضًا حكاية."},
   {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", ar:"مجموعة السيارات", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
-  {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة.", thumbs:true},
+  {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة.", thumbs:true, hml:"നാണയങ്ങളിലൂടെ ഒരു യാത്ര", hen:"A Journey Through Coins", har:"رحلة عبر العملات", charts:[{img:"coins-chart-1.jpg",pins:[{k:"coin-2",x:20.2,y:7.3},{k:"coin-11",x:80.6,y:8.3},{k:"coin-7",x:23.3,y:44.7},{k:"coin-3",x:78.3,y:44.5},{k:"coin-1",x:21.4,y:71.9},{k:"coin-10",x:46.4,y:72.9},{k:"coin-13",x:65.2,y:73.4},{k:"coin-9",x:85.5,y:73.3}]},{img:"coins-chart-2.jpg",pins:[{k:"coin-6",x:12.8,y:3.0},{k:"coin-15",x:39.7,y:3.2},{k:"coin-5",x:81.5,y:3.3},{k:"coin-17",x:14.7,y:37.0},{k:"coin-4",x:48.5,y:38.1},{k:"coin-14",x:78.0,y:37.4},{k:"coin-8",x:15.5,y:66.7},{k:"coin-16",x:48.4,y:66.7},{k:"coin-12",x:83.0,y:65.3}]}]},
   {id:"notes", icon:"💵", ml:"നോട്ടുകൾ", en:"Notes", ar:"الأوراق النقدية", tml:"കറൻസി നോട്ടുകൾ.", ten:"Currency notes.", tar:"أوراق نقدية.", groups:[{id:"indian", ml:"ഇന്ത്യൻ നോട്ടുകൾ", en:"Indian Notes", ar:"أوراق نقدية هندية"}, {id:"foreign", ml:"വിദേശ നോട്ടുകൾ", en:"Foreign Notes", ar:"أوراق نقدية أجنبية"}], thumbs:true},
   {id:"crafts", icon:"🎨", ml:"ഹാൻഡ് ക്രാഫ്റ്റ്സ്", en:"Handicrafts", ar:"الحرف اليدوية", tml:"കൈകൊണ്ട് ഉണ്ടാക്കിയവ.", ten:"Made by hand.", tar:"صُنعت باليد."}
 ];
@@ -1287,11 +1297,15 @@ if(!c){
       return a.length?'<h3 class="grp">'+t(g.ml,g.en,g.ar)+' <span class="gc">'+a.length+'</span></h3>'+tilesFor(a):'';
     }).join("");
   } else { tiles=tilesFor(list); }
+  function pinHtml(p){ var it=null; ITEMS.forEach(function(i){ if(i.id===p.k) it=i; }); if(!it) return ""; return '<a class="pin" style="left:'+p.x+'%;top:'+p.y+'%" href="item.html?id='+encodeURIComponent(it.id)+'">'+t(it.ml,it.en,it.ar)+'</a>'; }
+  function chartHtml(ch,i){ return '<div class="chart" data-i="'+i+'"><img src="'+ch.img+'" alt="'+c.hen+'" loading="lazy">'+ch.pins.map(pinHtml).join("")+'</div>'; }
+  function chartsHtml(){ return '<h3 class="cj">'+t(c.hml,c.hen,c.har)+'</h3><p class="board-hint cjh">'+t("വലുതാക്കാൻ ചിത്രത്തിൽ ടാപ്പ് ചെയ്യൂ. രാജ്യത്തിൻ്റെ പേരിൽ ടാപ്പ് ചെയ്താൽ ആ പേജ് തുറക്കും.","Tap a picture to enlarge. Tap a country name to open it.","اضغط على الصورة للتكبير. اضغط على اسم الدولة لفتح صفحتها.")+'</p>'+c.charts.map(chartHtml).join("")+'<div class="lb" id="lbc" hidden><button class="lb-x" id="lbcx" type="button" aria-label="Close">✕</button><div class="lb-sc" id="lbcs"></div></div>'; }
   var body="";
   if(c.board){
     body+='<img class="board" id="boardImg" src="'+c.board+'" alt="'+c.en+'"><p class="board-hint">'+t("വലുതായി കാണാൻ ചിത്രത്തിൽ ടാപ്പ് ചെയ്യൂ","Tap the image to enlarge","اضغط على الصورة للتكبير")+'</p>'+
          '<div class="lb" id="lb" hidden><button class="lb-x" id="lbx" type="button" aria-label="Close">✕</button><div class="lb-sc"><img src="'+c.board+'" alt="'+c.en+'"></div></div>';
   }
+  if(c.charts) body+=chartsHtml();
   body+=tiles;
   main.innerHTML='<section class="cat"><div class="wrap"><a class="back" href="index.html">← '+t("ബറാക്കിയ്യ","Baraqiyya","براقية")+'</a><h2>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h2><p class="tl">'+t(c.tml,c.ten,c.tar)+'</p>'+body+'</div></section>';
 
@@ -1301,6 +1315,14 @@ if(!c){
     bi.addEventListener("click",function(){ openLb(true); lb.querySelector(".lb-sc").scrollTo(0,0); });
     x.addEventListener("click",function(){ openLb(false); });
     document.addEventListener("keydown",function(e){ if(e.key==="Escape" && !lb.hidden) openLb(false); });
+  }
+  if(c.charts){
+    var lbc=document.getElementById("lbc"), lbs=document.getElementById("lbcs");
+    function openC(i){ lbs.innerHTML='<div class="zoomwrap">'+chartHtml(c.charts[i],i)+'</div>'; lbc.hidden=false; document.body.style.overflow="hidden"; lbs.scrollTo(0,0); }
+    function closeC(){ lbc.hidden=true; document.body.style.overflow=""; }
+    document.querySelectorAll("#catmain .chart").forEach(function(el){ el.addEventListener("click",function(e){ if(e.target.closest(".pin")) return; openC(+el.getAttribute("data-i")); }); });
+    document.getElementById("lbcx").addEventListener("click",closeC);
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!lbc.hidden) closeC(); });
   }
 }
 </script>

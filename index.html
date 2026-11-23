@@ -1057,7 +1057,7 @@ return {QRCode:req("./index"),EC:req("./QRErrorCorrectLevel")};})();
 var SITE_URL = ""; // leave empty: the QR uses the address the site is opened at
 
 var CATS = [
-  {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ."},
+  {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ.", board:"lineage-board.jpg"},
   {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", ar:"التحف القديمة", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too.", tar:"للقديم أيضًا حكاية."},
   {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", ar:"مجموعة السيارات", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
   {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة."},
@@ -1149,8 +1149,8 @@ function qr(el,text,size,disp){
 var grid=document.getElementById("catgrid");
 CATS.forEach(function(c){
   var list=ITEMS.filter(function(i){return i.cat===c.id;});
-  var cover=(list.length&&list[0].img)?'<img src="'+list[0].img+'" alt="" loading="lazy">':c.icon;
-  var cnt=list.length?t(list.length+" ഇനങ്ങൾ",list.length+" items",list.length+" عنصرًا"):t("ഉടൻ വരും","Coming soon","قريبًا");
+  var cover=c.board?'<img src="'+c.board+'" alt="" loading="lazy" style="object-position:top">':((list.length&&list[0].img)?'<img src="'+list[0].img+'" alt="" loading="lazy">':c.icon);
+  var cnt=c.board?t("കാണുക","View","عرض"):(list.length?t(list.length+" ഇനങ്ങൾ",list.length+" items",list.length+" عنصرًا"):t("ഉടൻ വരും","Coming soon","قريبًا"));
   grid.insertAdjacentHTML("beforeend",'<a class="catcard" href="category.html?c='+c.id+'"><div class="cv">'+cover+'</div><div class="cb"><h3>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h3><p>'+t(c.tml,c.ten,c.tar)+'</p><div class="cnt"><span>'+cnt+'</span><span class="arr">→</span></div></div></a>');
 });
 </script>

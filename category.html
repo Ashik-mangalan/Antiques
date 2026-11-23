@@ -109,6 +109,13 @@ footer{padding:28px 0;background:var(--deep);color:#C3D2CD;font-size:.9rem}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:640px){.hero-body{padding:48px 0 64px}.cat{padding-top:56px}}
 
+.board{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--mist);cursor:zoom-in}
+.board-hint{margin:10px 0 56px;font-size:.9rem;text-align:center;color:var(--patina)}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.94)}
+.lb[hidden]{display:none}
+.lb-sc{width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch}
+.lb-sc img{display:block;width:1560px;max-width:none;height:auto}
+.lb-x{position:fixed;top:12px;inset-inline-end:12px;z-index:101;width:44px;height:44px;border-radius:50%;border:1px solid var(--brass);background:var(--deep);color:#EEF2EE;font-size:1.2rem;cursor:pointer}
 </style>
 </head>
 <body data-lang="en">
@@ -1029,7 +1036,7 @@ return {QRCode:req("./index"),EC:req("./QRErrorCorrectLevel")};})();
 var SITE_URL = ""; // leave empty: the QR uses the address the site is opened at
 
 var CATS = [
-  {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ."},
+  {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ.", board:"lineage-board.jpg"},
   {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", ar:"التحف القديمة", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too.", tar:"للقديم أيضًا حكاية."},
   {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", ar:"مجموعة السيارات", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
   {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة."},
@@ -1126,10 +1133,24 @@ if(!c){
 }else{
   document.title=c.ml+" | "+c.en+" | Baraqiyya";
   var list=ITEMS.filter(function(i){return i.cat===c.id;});
-  var body=list.length?'<div class="tiles">'+list.map(function(i,n){
+  var body;
+  if(c.board){
+    body='<img class="board" id="boardImg" src="'+c.board+'" alt="'+c.en+'"><p class="board-hint">'+t("വലുതായി കാണാൻ ചിത്രത്തിൽ ടാപ്പ് ചെയ്യൂ","Tap the image to enlarge","اضغط على الصورة للتكبير")+'</p>'+
+         '<div class="lb" id="lb" hidden><button class="lb-x" id="lbx" type="button" aria-label="Close">✕</button><div class="lb-sc"><img src="'+c.board+'" alt="'+c.en+'"></div></div>';
+  }else{
+  body=list.length?'<div class="tiles">'+list.map(function(i,n){
     return '<a class="tile" href="item.html?id='+encodeURIComponent(i.id)+'"><span class="no">'+(n+1)+'</span><span class="nm">'+t(i.ml,i.en,i.ar)+'</span></a>';
   }).join("")+'</div>':'<div class="soon">'+t("ഉടൻ ഇവിടെ വരും","Coming soon","قريبًا")+'</div>';
+  }
   main.innerHTML='<section class="cat"><div class="wrap"><a class="back" href="index.html">← '+t("ബറാക്കിയ്യ","Baraqiyya","براقية")+'</a><h2>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h2><p class="tl">'+t(c.tml,c.ten,c.tar)+'</p>'+body+'</div></section>';
+
+  if(c.board){
+    var lb=document.getElementById("lb"), bi=document.getElementById("boardImg"), x=document.getElementById("lbx");
+    function openLb(o){ lb.hidden=!o; document.body.style.overflow=o?"hidden":""; }
+    bi.addEventListener("click",function(){ openLb(true); lb.querySelector(".lb-sc").scrollTo(0,0); });
+    x.addEventListener("click",function(){ openLb(false); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape" && !lb.hidden) openLb(false); });
+  }
 }
 </script>
 </body>

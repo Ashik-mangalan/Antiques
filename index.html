@@ -1059,7 +1059,7 @@ var SITE_URL = ""; // leave empty: the QR uses the address the site is opened at
 var CATS = [
   {id:"lineage", icon:"🌳", ml:"തിരുനബി ﷺ വംശാവലി", en:"Prophet's Lineage ﷺ", ar:"نسب النبي ﷺ", tml:"തിരുനബി ﷺ യുടെ കുടുംബപരമ്പര.", ten:"The family tree of the Prophet ﷺ.", tar:"شجرة نسب النبي ﷺ.", board:"lineage-board.jpg"},
   {id:"antiques", icon:"🏺", ml:"ആൻറ്റിക്സ്", en:"Antiques", ar:"التحف القديمة", tml:"പഴയതിനും ഒരു കഥയുണ്ട്.", ten:"Old things have stories too.", tar:"للقديم أيضًا حكاية."},
-  {id:"cars", icon:"🚗", ml:"കാർ കളക്ഷൻ", en:"Car collection", ar:"مجموعة السيارات", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
+  {id:"cars", icon:"🚗", board:"diecast-world.jpg", cpos:"center", nonames:true, thumbs:true, ml:"ഡൈകാസ്റ്റ് വേൾഡ്", en:"Diecast World", ar:"عالم الدايكاست", tml:"ചെറിയ കാറുകളുടെ ശേഖരം.", ten:"A collection of miniature cars.", tar:"مجموعة من السيارات المصغّرة."},
   {id:"coins", icon:"🪙", ml:"നാണയങ്ങൾ", en:"Coins", ar:"العملات المعدنية", tml:"പഴയ നാണയങ്ങൾ.", ten:"Old coins.", tar:"عملات قديمة.", thumbs:true, hml:"നാണയങ്ങളിലൂടെ ഒരു യാത്ര", hen:"A Journey Through Coins", har:"رحلة عبر العملات", charts:[{img:"coins-chart-1.jpg",pins:[{k:"coin-2",x:20.2,y:7.3},{k:"coin-11",x:80.6,y:8.3},{k:"coin-7",x:23.3,y:44.7},{k:"coin-3",x:78.3,y:44.5},{k:"coin-1",x:21.4,y:71.9},{k:"coin-10",x:46.4,y:72.9},{k:"coin-13",x:65.2,y:73.4},{k:"coin-9",x:85.5,y:73.3}]},{img:"coins-chart-2.jpg",pins:[{k:"coin-6",x:12.8,y:3.0},{k:"coin-15",x:39.7,y:3.2},{k:"coin-5",x:81.5,y:3.3},{k:"coin-17",x:14.7,y:37.0},{k:"coin-4",x:48.5,y:38.1},{k:"coin-14",x:78.0,y:37.4},{k:"coin-8",x:15.5,y:66.7},{k:"coin-16",x:48.4,y:66.7},{k:"coin-12",x:83.0,y:65.3}]}]},
   {id:"notes", icon:"💵", ml:"നോട്ടുകൾ", en:"Notes", ar:"الأوراق النقدية", tml:"കറൻസി നോട്ടുകൾ.", ten:"Currency notes.", tar:"أوراق نقدية.", groups:[{id:"indian", ml:"ഇന്ത്യൻ നോട്ടുകൾ", en:"Indian Notes", ar:"أوراق نقدية هندية"}, {id:"foreign", ml:"വിദേശ നോട്ടുകൾ", en:"Foreign Notes", ar:"أوراق نقدية أجنبية"}], thumbs:true},
   {id:"crafts", icon:"🎨", ml:"ഹാൻഡ് ക്രാഫ്റ്റ്സ്", en:"Handicrafts", ar:"الحرف اليدوية", tml:"കൈകൊണ്ട് ഉണ്ടാക്കിയവ.", ten:"Made by hand.", tar:"صُنعت باليد."}
@@ -1233,7 +1233,46 @@ var ITEMS = [
   {id:"coin-14", cat:"coins", ml:"തായ്‌ലൻഡ്", en:"Thailand", ar:"تايلاند", dml:"തായ്‌ലൻഡ്-ൽ നിന്നുള്ള നാണയങ്ങൾ.", den:"Coins from Thailand.", dar:"عملات معدنية من تايلاند.", img:"coin-thailand.jpg"},
   {id:"coin-15", cat:"coins", ml:"തുർക്കി", en:"Türkiye", ar:"تركيا", dml:"തുർക്കി-ൽ നിന്നുള്ള നാണയങ്ങൾ.", den:"Coins from Türkiye.", dar:"عملات معدنية من تركيا.", img:"coin-turkiye.jpg"},
   {id:"coin-16", cat:"coins", ml:"യുഎഇ", en:"UAE", ar:"الإمارات", dml:"യുഎഇ-ൽ നിന്നുള്ള നാണയങ്ങൾ.", den:"Coins from UAE.", dar:"عملات معدنية من الإمارات.", img:"coin-uae.jpg"},
-  {id:"coin-17", cat:"coins", ml:"യുഎസ്എ", en:"USA", ar:"الولايات المتحدة", dml:"യുഎസ്എ-ൽ നിന്നുള്ള നാണയങ്ങൾ.", den:"Coins from USA.", dar:"عملات معدنية من الولايات المتحدة.", img:"coin-usa.jpg"}
+  {id:"coin-17", cat:"coins", ml:"യുഎസ്എ", en:"USA", ar:"الولايات المتحدة", dml:"യുഎസ്എ-ൽ നിന്നുള്ള നാണയങ്ങൾ.", den:"Coins from USA.", dar:"عملات معدنية من الولايات المتحدة.", img:"coin-usa.jpg"},
+  {id:"car-1", cat:"cars", ml:"മെഴ്സിഡസ് AMG വിഷൻ ഗ്രാൻ ടൂറിസ്മോ", en:"Mercedes-AMG Vision Gran Turismo", ar:"مرسيدس إيه إم جي فيجن جران توريزمو", img:"car-1.jpg"},
+  {id:"car-2", cat:"cars", ml:"മക്ലാരൻ 720S", en:"McLaren 720S", ar:"ماكلارين 720S", img:"car-2.jpg"},
+  {id:"car-3", cat:"cars", ml:"റോൾസ് റോയ്സ് ഫാന്റം", en:"Rolls-Royce Phantom", ar:"رولز رويس فانتوم", img:"car-3.jpg"},
+  {id:"car-4", cat:"cars", ml:"ബിഎംഡബ്ല്യു M8 ഗ്രാൻ കൂപ്പെ", en:"BMW M8 Gran Coupé", ar:"بي إم دبليو M8 جران كوبيه", img:"car-4.jpg"},
+  {id:"car-5", cat:"cars", ml:"നിസാൻ സ്കൈലൈൻ GT-R", en:"Nissan Skyline GT-R", ar:"نيسان سكايلاين GT-R", img:"car-5.jpg"},
+  {id:"car-6", cat:"cars", ml:"ഡോഡ്ജ് ചലഞ്ചർ", en:"Dodge Challenger", ar:"دودج تشالنجر", img:"car-6.jpg"},
+  {id:"car-7", cat:"cars", ml:"ഫോർഡ് മസ്താങ് ഷെൽബി GT500", en:"Ford Mustang Shelby GT500", ar:"فورد موستانج شيلبي GT500", img:"car-7.jpg"},
+  {id:"car-8", cat:"cars", ml:"പോർഷെ 911", en:"Porsche 911", ar:"بورشه 911", img:"car-8.jpg"},
+  {id:"car-9", cat:"cars", ml:"മസ്ദ MX-5 മിയാത്ത", en:"Mazda MX-5 Miata", ar:"مازدا MX-5 مياتا", img:"car-9.jpg"},
+  {id:"car-10", cat:"cars", ml:"ഫെരാരി 488", en:"Ferrari 488", ar:"فيراري 488", img:"car-10.jpg"},
+  {id:"car-11", cat:"cars", ml:"ലാഡ 2106", en:"Lada 2106", ar:"لادا 2106", img:"car-11.jpg"},
+  {id:"car-12", cat:"cars", ml:"ഷെവർലെ ഇംപാല", en:"Chevrolet Impala", ar:"شيفروليه إمبالا", img:"car-12.jpg"},
+  {id:"car-13", cat:"cars", ml:"ക്ലാസിക് പോർഷെ 911", en:"Classic Porsche 911", ar:"بورشه 911 كلاسيكية", img:"car-13.jpg"},
+  {id:"car-14", cat:"cars", ml:"ക്ലാസിക് ക്യാഡിലാക്", en:"Classic Cadillac", ar:"كاديلاك كلاسيكية", img:"car-14.jpg"},
+  {id:"car-15", cat:"cars", ml:"പ്രീമിയർ പദ്മിനി", en:"Premier Padmini", ar:"بريمير بادميني", img:"car-15.jpg"},
+  {id:"car-16", cat:"cars", ml:"മെഴ്സിഡസ്-ബെൻസ് W123", en:"Mercedes-Benz W123", ar:"مرسيدس-بنز W123", img:"car-16.jpg"},
+  {id:"car-17", cat:"cars", ml:"ഹോട്ട് റോഡ്", en:"Hot Rod", ar:"هوت رود", img:"car-17.jpg"},
+  {id:"car-18", cat:"cars", ml:"ചുവപ്പ് മിനി ബസ്", en:"Red Mini Bus", ar:"حافلة صغيرة حمراء", img:"car-18.jpg"},
+  {id:"car-19", cat:"cars", ml:"നീല ഫോർഡ് മസ്താങ്", en:"Blue Ford Mustang", ar:"فورد موستانج زرقاء", img:"car-19.jpg"},
+  {id:"car-20", cat:"cars", ml:"പഴയ പിക്കപ്പ് ട്രക്ക്", en:"Vintage Pickup Truck", ar:"شاحنة بيك أب قديمة", img:"car-20.jpg"},
+  {id:"car-21", cat:"cars", ml:"പർപ്പിൾ ഡോഡ്ജ് ചലഞ്ചർ", en:"Purple Dodge Challenger", ar:"دودج تشالنجر بنفسجية", img:"car-21.jpg"},
+  {id:"car-22", cat:"cars", ml:"ഷെരീഫ് (കാർസ്)", en:"Sheriff (Cars)", ar:"الشريف (Cars)", img:"car-22.jpg"},
+  {id:"car-23", cat:"cars", ml:"കറുത്ത ഹാച്ച്ബാക്ക്", en:"Black Hatchback", ar:"هاتشباك سوداء", img:"car-23.jpg"},
+  {id:"car-24", cat:"cars", ml:"റോക്ക് ക്രാളർ ഓഫ്-റോഡ് കാർ", en:"Rock Crawler Off-Road Car", ar:"سيارة كروالر للطرق الوعرة", img:"car-24.jpg"},
+  {id:"car-25", cat:"cars", ml:"ടൊയോട്ട ഇന്നോവ", en:"Toyota Innova", ar:"تويوتا إنوفا", img:"car-25.jpg"},
+  {id:"car-26", cat:"cars", ml:"ബിഎംഡബ്ല്യു M3 E30", en:"BMW M3 E30", ar:"بي إم دبليو M3 E30", img:"car-26.jpg"},
+  {id:"car-27", cat:"cars", ml:"ഫോക്സ്‌വാഗൺ ബീറ്റിൽ", en:"Volkswagen Beetle", ar:"فولكس فاجن بيتل", img:"car-27.jpg"},
+  {id:"car-28", cat:"cars", ml:"ഫോക്സ്‌വാഗൺ ടൈപ്പ് 2 ബസ്", en:"Volkswagen Type 2 Bus", ar:"فولكس فاجن تايب 2 (حافلة)", img:"car-28.jpg"},
+  {id:"car-29", cat:"cars", ml:"മേറ്റർ (കാർസ്)", en:"Mater (Cars)", ar:"ماتر (Cars)", img:"car-29.jpg"},
+  {id:"car-30", cat:"cars", ml:"വെളുത്ത പിക്കപ്പ് ട്രക്ക്", en:"White Pickup Truck", ar:"شاحنة بيك أب بيضاء", img:"car-30.jpg"},
+  {id:"car-31", cat:"cars", ml:"മെഴ്സിഡസ്-ബെൻസ് W124", en:"Mercedes-Benz W124", ar:"مرسيدس-بنز W124", img:"car-31.jpg"},
+  {id:"car-32", cat:"cars", ml:"റേസിംഗ് പ്രോട്ടോടൈപ്പ്", en:"Racing Prototype", ar:"سيارة سباق أولية", img:"car-32.jpg"},
+  {id:"car-33", cat:"cars", ml:"പിങ്ക് കസ്റ്റം കാർ", en:"Pink Custom Car", ar:"سيارة مخصصة وردية", img:"car-33.jpg"},
+  {id:"car-34", cat:"cars", ml:"ഫോർഡ് GT", en:"Ford GT", ar:"فورد GT", img:"car-34.jpg"},
+  {id:"car-35", cat:"cars", ml:"കസ്റ്റം സ്റ്റേഷൻ വാഗൺ", en:"Custom Station Wagon", ar:"ستيشن واجن مخصصة", img:"car-35.jpg"},
+  {id:"car-36", cat:"cars", ml:"കറുത്ത കസ്റ്റം ട്രക്ക്", en:"Black Custom Truck", ar:"شاحنة مخصصة سوداء", img:"car-36.jpg"},
+  {id:"car-37", cat:"cars", ml:"നീല കസ്റ്റം കാർ", en:"Blue Custom Car", ar:"سيارة مخصصة زرقاء", img:"car-37.jpg"},
+  {id:"car-38", cat:"cars", ml:"ലൈറ്റ്നിംഗ് മക്വീൻ (കാർസ്)", en:"Lightning McQueen (Cars)", ar:"البرق ماكوين (Cars)", img:"car-38.jpg"},
+  {id:"car-39", cat:"cars", ml:"വെസ്പ സ്കൂട്ടർ", en:"Vespa Scooter", ar:"سكوتر فيسبا", img:"car-39.jpg"}
 ];
 // =======================================
 
@@ -1288,8 +1327,8 @@ function qr(el,text,size,disp){
 var grid=document.getElementById("catgrid");
 CATS.forEach(function(c){
   var list=ITEMS.filter(function(i){return i.cat===c.id;});
-  var cover=c.board?'<img src="'+c.board+'" alt="" loading="lazy" style="object-position:top">':((list.length&&list[0].img)?'<img src="'+list[0].img+'" alt="" loading="lazy">':c.icon);
-  var cnt=c.board?t(list.length+" പേരുകൾ",list.length+" names",list.length+" اسمًا"):(list.length?t(list.length+" ഇനങ്ങൾ",list.length+" items",list.length+" عنصرًا"):t("ഉടൻ വരും","Coming soon","قريبًا"));
+  var cover=c.board?'<img src="'+c.board+'" alt="" loading="lazy" style="object-position:'+(c.cpos||"top")+'">':((list.length&&list[0].img)?'<img src="'+list[0].img+'" alt="" loading="lazy">':c.icon);
+  var cnt=(c.board&&!c.nonames)?t(list.length+" പേരുകൾ",list.length+" names",list.length+" اسمًا"):(list.length?t(list.length+" ഇനങ്ങൾ",list.length+" items",list.length+" عنصرًا"):t("ഉടൻ വരും","Coming soon","قريبًا"));
   grid.insertAdjacentHTML("beforeend",'<a class="catcard" href="category.html?c='+c.id+'"><div class="cv">'+cover+'</div><div class="cb"><h3>'+c.icon+' '+t(c.ml,c.en,c.ar)+'</h3><p>'+t(c.tml,c.ten,c.tar)+'</p><div class="cnt"><span>'+cnt+'</span><span class="arr">→</span></div></div></a>');
 });
 </script>
